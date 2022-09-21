@@ -23,6 +23,62 @@
 - 카카오 블로그 검색 API에 장애가 발생한 경우, 네이버 블로그 검색 API를 통해 데이터 제공
 - 네이버 블로그 검색 API: https://developers.naver.com/docs/serviceapi/search/blog/blog.md
 
+## API 명세
+
+### 블로그 검색
+
+키워드를 이용하여 블로그 검색
+
+#### URI : GET /blog/search
+
+#### Request param
+
+- keyword : 검색어
+- sortType : 정렬 유형 ACCURACY / RECENCY
+- page : 페이지
+- size : 페이지 사이즈
+
+#### Response
+
+- meta.keyword : 검색어
+- meta.pageSize : 페이지 사이즈
+- meta.currentPage : 현재 페이지
+- meta.totalPage : 전체 페이지 수
+- meta.referer : 검색 출처 KAKAO / NAVEr
+- results.title : 블로그 타이틀
+- results.link : 링크
+- results.contents : 내용
+- results.blogName : 블로그명
+- results.postDate : 작성일
+
+#### CURL
+
+```
+curl --location --request GET 'http://localhost:8080/blog/search?page=1&sortType=ACCURACY&keyword=안녕&size=10' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id":"1",
+    "name":"레이아웃1"
+}'
+```
+
+### 상위 검색어 조회
+
+검색 기록이 많은 상위 10개 검색어 조회
+
+#### URK : GET /blog/search/popular-keyword
+
+#### Response
+
+- keyword : 검색어
+- count : 횟수
+
+#### CURL
+
+```
+curl --location --request GET 'http://localhost:8080/blog/search/popular-keyword'
+```
+
 ## 구현
 
 ### 생각할 점
