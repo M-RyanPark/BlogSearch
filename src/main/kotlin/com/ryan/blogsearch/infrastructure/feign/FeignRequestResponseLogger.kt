@@ -8,6 +8,7 @@ import mu.KLogging
 import org.springframework.context.annotation.Bean
 import java.io.IOException
 import java.util.*
+import kotlin.math.min
 
 /**
  * FeignClient의 기본 Logger([feign.slf4j.Slf4jLogger])는 client interface 의 로그 레벨이 debug일 때만 작동하고
@@ -73,7 +74,7 @@ class FeignRequestResponseLogger : Logger() {
                 "<-- %s (%sms) body=[%s]",
                 status,
                 elapsedTime,
-                Util.decodeOrDefault(bodyData, Util.UTF_8, EMPTY).substring(0, MAX_BODY_SIZE)
+                Util.decodeOrDefault(bodyData, Util.UTF_8, EMPTY).substring(0, min(MAX_BODY_SIZE, bodyData.size))
             )
             response.toBuilder().body(bodyData).build()
         } else {

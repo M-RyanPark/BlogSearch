@@ -17,3 +17,9 @@ spring:
       ddl-auto: none
     open-in-view: false
     show-sql: true
+
+
+kakao-daum:
+  api:
+    url: https://dapi.kakao.com
+    key: 6adff3b55b6bb50e22b3ffde4117c401
