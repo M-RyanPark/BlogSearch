@@ -14,9 +14,12 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     database: H2
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     open-in-view: false
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 
 kakao-daum:
